@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Références aux projets internes si tu en as -->
+    <ProjectReference Include="..\MarketAhmed.Core\MarketAhmed.Core.csproj" />
+    <ProjectReference Include="..\MarketAhmed.Data\MarketAhmed.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Packages NuGet nécessaires -->
+    <PackageReference Include="FontAwesome.Sharp" Version="6.2.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.1.11" />
+  </ItemGroup>
+
+</Project>

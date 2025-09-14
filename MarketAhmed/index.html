@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Location</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #mapid { /* L'ID DOIT ÊTRE "mapid" pour correspondre au JS de Leaflet */
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Important pour que #mapid prenne 100% */
+        }
+
+        html {
+            height: 100%; /* Important pour que body prenne 100% */
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div> <!-- Le div de la carte -->
+
+    <script>
+        // Initialisation de la carte Leaflet
+        var mymap = L.map('mapid').setView([0, 0], 2); // Centre par défaut mondial
+
+        // Ajout des tuiles OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+
+        // Création d'un marqueur par défaut
+        var marker = L.marker([0, 0]).addTo(mymap)
+            .bindPopup("Chargement de la carte...")
+            .openPopup(); // Ouvre le popup par défaut
+
+        // Fonction JavaScript pour définir la position
+        function setLocation(lat, lon, name) {
+            var newLatLng = new L.LatLng(lat, lon);
+            mymap.setView(newLatLng, 15); // Centre la carte et zoome à 15
+            marker.setLatLng(newLatLng) // Déplace le marqueur
+                .bindPopup("<b>" + name + "</b><br>Lat: " + lat + ", Lon: " + lon) // Met à jour le popup
+                .openPopup(); // Ouvre le popup du nouveau marqueur
+        }
+    </script>
+</body>
+</html>
